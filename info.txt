@@ -1,0 +1,68 @@
+#                                              Django
+
+
+MVC(Model,View,Controller) - basqa dillerde
+MVT(Model,View,Template) - Python dilinde
+
+pip install pipenv  -  virtual muhiti yukleyir
+django-admin startproject <name> - proyekt yaradir  (django-admin.py)?????????????
+pipenv shell - virtual muhit yaradir
+cd <project_name>  - proyektin qovluguna daxil olur
+pip install django  -  django-nu yukleyir
+python manage.py startapp <app_name>  -  app yaradir (django-admin startapp <app_name> - app yaradir)
+pip install <kitabxana adi> - kitabxana yuklemek ucun
+pip freeze - yuklenmis kitabxanalari gosterir
+pip freeze > requirements.txt - kitabxanalari bu fayla yigir
+----------------------------------------------------------------------------------------------------
+python manage.py makemigrations - database cedvellerini hazirlayir
+python manage.py migrate -   database cedvellerini yaradir
+python manage.py createsuperuser - super istifadeci yaradir
+python manage.py changepassword <username> - super istifadecinin parolunu yenileyir
+python manage.py runserver - serveri aktivlesdirir
+
+
+git init - proyekt ucun bir defe yazilir
+git clone <url>- proyekt ucucn bir defe yazilir
+------------------------------------------
+git status -  git-in veziyyetin yoxlayiriq
+git add . - deyisiklik olmus fayllari ad edir
+git commit -m "mesaj" -  bu merhelede deyisiklik barade mesaj gonderirirem
+git branch <name> - branch yaradir 
+git push origin <branch name> - oldugum yerden meleumatlari github branch-ina  gonderirir
+error verirse
+git remote add origin < <repository url>
+git push origin <branch name>
+ve ya
+git push origin master - oldugum yerden meleumatlari github master-ine  gonderirir
+------------------------------------------------------------------------
+
+
+
+pythonanywhere
+virtual env yaratmaq:
+ls
+mkvirtualenv myvirtualenv --python=/usr/bin/python3.10 - virtual envoriment yaradir
+git init
+git clone - https://github.com/idrakseyfullayev/todoproject.git
+pip install -r requirements.txt - requirements.txt fayli lazimi yere yuklemek
+
+workon <virtualenv_name> - virtual muhiti aktiv temek
+git pull origin todoprupdate-8 
+error verirse
+git reset --hard  - proyekt update edlilende error: Your local changes to the following files would be overwritten by merge:
+error verirse
+git remote add origin https://github.com/idrakseyfullayev/todoproject.git
+git pull origin todoprupdate-8
+pip install -r requirements.txt - requirements.txt fayli lazimi yere yuklemek
+
+
+
+cd <qovluq> - qovluga kecid
+ls  - qovlugun icindeki hem qovluq ve fayllari
+pwd - yolu gosterir- hal hazirdaki hardayiq
+
+
+pip install -r requirements.txt - requirements.txt fayli lazimi yere yuklemek
+
+
+python manage.py collectstatic - static fayllari bir qovluga toplayir

@@ -1,0 +1,73 @@
+{% extends 'components/base.html' %}
+
+{% block head %} <title>Details</title> {% endblock %}
+
+{% block content %}
+<div class="container mt-5">
+  <div class="card mb-3" style="max-width: 100%;">
+    <div class="row g-0">
+      <div class="col-md-4">
+        <img src="{{product.photo.url}}" class="img-fluid rounded-start" alt="{{product.name}}">
+      </div>
+      <div class="col-md-8">
+        <div class="card-body">
+          <h5 class="card-title">{{product.name}}</h5>
+          <h5 class="card-title">{{product.price}} azn</h5>
+          <p class="card-text">{{product.about}}</p>
+          <!-- <p class="card-text"><small class="text-body-secondary">Last updated 3 mins ago</small></p> -->
+          <p>Baxış sayı: {{product.views_number}}</p>
+
+          <form method="POST">
+            {% csrf_token %}
+            <input type="hidden" name="choice" value="like">
+            <input type="hidden" name="productid" value="{{product.id}}">
+            {% if request.user.is_authenticated %}
+            <button class="btn btn-primary" type="submit">Like</button>
+            {% else %}
+            <a class="btn btn-primary disabled">Like</a>
+            {% endif %}
+          </form>
+
+            Bəyənmə: {{product.product_likes.all | length}}
+
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+{% if request.user.is_authenticated %}
+    <form class="container" method="POST">
+        {% csrf_token %}
+        <div class="mb-3 form-floating">
+            <input type="hidden" name="choice" value="comment">
+            <input type="hidden" name="productid" value="{{product.id}}">
+            <textarea class="form-control" name="comment" placeholder="Leave a comment here" id="floatingTextarea"></textarea>
+            <label for="floatingTextarea">Rəylərinizi yazın</label>
+          </div>
+
+        <button class="btn btn-primary" id="floatingTextarea">Send</button>  
+    </form>
+{% endif %}
+
+<div class="container mt-3">
+    <h4>Comments ({{product.product_comments.all | length}})</h4>
+    {% for product_comment in product.product_comments.all %}
+<div class="card">
+    <div class="card-header">
+      {{product_comment.user.username}}
+    </div>
+    <div class="card-body">
+      <blockquote class="blockquote mb-0">
+        <p>{{product_comment.comment}}</p>
+        <footer class="blockquote-footer">{{ product_comment.pub_date | timesince }}</footer>
+      </blockquote>
+    </div>
+  </div>
+  {% endfor %}
+</div>    
+
+
+  {% endblock %}  

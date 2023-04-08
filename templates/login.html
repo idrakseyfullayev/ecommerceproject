@@ -1,0 +1,32 @@
+{% extends 'components/base.html' %}
+
+{% block head%}<title>Login</title> {% endblock %}
+
+{% block content %}
+
+<div class="container mt-5">
+    <h1>Login</h1>
+    <form method="POST">
+        {% csrf_token %}
+        <label for="username">Username</label><br>
+        <input type="text" name="username", id="username" style="width:20%"><br><br>
+        <label for="password">Password</label><br>
+        <input type="text" name="password", id="password" style="width:20%"><br><br>
+        <button class="btn btn-primary" type="submit">Login</button>
+
+    </form>
+
+    {% if messages %}
+    <ul class="messages">
+    {% for message in messages %}
+    <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+    {% endfor %}
+    </ul>
+    {% endif %}
+
+</div>
+
+
+
+
+{% endblock %}

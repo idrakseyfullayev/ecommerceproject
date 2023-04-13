@@ -1,12 +1,26 @@
 from rest_framework import serializers
 from account.models import Account
 from django.contrib.auth.password_validation import validate_password
+from product.models import FavoriteProductModel, ProductModel
+# from product.api.serializers import FavoriteModelListSerializer
+
+
+class FavoriteModelListSerializer(serializers.ModelSerializer):
+    user = serializers.SlugRelatedField(queryset = Account.objects.all(), slug_field="username")
+    product = serializers.SlugRelatedField(queryset = ProductModel.objects.all(), slug_field="name")
+    class Meta:
+        model = FavoriteProductModel
+        fields = "__all__"
+
 
 class AccountListSerializer(serializers.ModelSerializer):
+    user_favorites = FavoriteModelListSerializer(many=True,)
+    # user_favorites = serializers.SlugRelatedField(queryset = FavoriteProductModel.objects.all(), slug_field="name")
     class Meta:
         model = Account
-        # exclude = ("password",)
-        fields = "__all__"
+        exclude = ("password",)
+        # fields = "__all__"
+        # fields = ("username", 'first_name', 'last_name', 'password', "user_favorites")
 
 class AccountCreateSerializer(serializers.ModelSerializer):
     password = serializers.CharField(write_only= True)

@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect, HttpResponse, get_object_or_404, get_list_or_404
-from product.models import ProductModel, ViewNumberModel, LikeModel, CommentModel, FavoritProductModel
+from product.models import ProductModel, ViewNumberModel, LikeModel, CommentModel, FavoriteProductModel
 from django.views import generic
 from django.db.models import Q
 
@@ -22,8 +22,8 @@ class IndexView(generic.View):
         productid = request.POST.get("productid")
         product = ProductModel.objects.get(id=productid)
         if request.user.is_authenticated:
-            if not FavoritProductModel.objects.filter(user=request.user, product=product):
-                FavoritProductModel.objects.create(user=request.user, product=product)
+            if not FavoriteProductModel.objects.filter(user=request.user, product=product):
+                FavoriteProductModel.objects.create(user=request.user, product=product)
 
         return redirect('product:index')
     
@@ -64,8 +64,8 @@ class DetailView(generic.View):
             product = ProductModel.objects.get(id=productid)
 
             if request.user.is_authenticated:
-                if not FavoritProductModel.objects.filter(user=request.user, product=product):
-                    FavoritProductModel.objects.create(user=request.user, product=product)
+                if not FavoriteProductModel.objects.filter(user=request.user, product=product):
+                    FavoriteProductModel.objects.create(user=request.user, product=product)
 
             return redirect('product:detail', productid)        
         
@@ -97,7 +97,7 @@ class BasketView(generic.View):
 
 
 def favorite_delete(request, id):
-    user_favorite = FavoritProductModel.objects.get(user=request.user, product_id=id)
+    user_favorite = FavoriteProductModel.objects.get(user=request.user, product_id=id)
     user_favorite.delete()
     return redirect('product:basket')
 

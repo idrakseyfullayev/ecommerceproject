@@ -19,12 +19,12 @@ class ProductModel(models.Model):
         return self.name
     
 
-class FavoritProductModel(models.Model):
+class FavoriteProductModel(models.Model):
     user = models.ForeignKey(Account, on_delete=models.CASCADE, related_name="user_favorites")
     product = models.ForeignKey(ProductModel, on_delete=models.CASCADE, related_name="product_favorites")
 
     class Meta:
-        verbose_name = "Favorit"
+        verbose_name = "Favorite"
         verbose_name_plural = "Favorites"
 
     def __str__(self) -> str:

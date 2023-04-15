@@ -3,7 +3,7 @@
 {% block head %} <title>Basket</title> {% endblock %}
 
 {% block content %}
-
+<p><div class="container text-primary"><h1>Səbətdəkilər</h1></div></p>
 {% if request.user.is_authenticated %}
 {% if user_favorites %}
 {% for user_favorite in user_favorites %}

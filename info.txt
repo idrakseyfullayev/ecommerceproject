@@ -45,6 +45,7 @@ mkvirtualenv myvirtualenv --python=/usr/bin/python3.10 - virtual envoriment yara
 git init
 git clone - https://github.com/idrakseyfullayev/todoproject.git
 pip install -r requirements.txt - requirements.txt fayli lazimi yere yuklemek
+git checkout <branch_name> - lazimi branch-a getmek
 
 workon <virtualenv_name> - virtual muhiti aktiv temek
 git pull origin todoprupdate-8 

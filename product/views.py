@@ -7,7 +7,6 @@ class IndexView(generic.View):
     def get(self, request, *args, **kwargs):
         products = ProductModel.objects.all()
         query = request.GET.get("query")
-        print(query)
 
         if query:
             products = ProductModel.objects.filter(Q(name__contains = query))
@@ -54,7 +53,7 @@ class DetailView(generic.View):
             productid = request.POST.get("productid")
             product = ProductModel.objects.get(id=productid)
 
-            if not LikeModel.objects.filter(user=request.user, product=product).exists():
+            if not LikeModel.objects.filter(user=request.user, product=product):
                 LikeModel.objects.create(user=request.user, product=product)
         
             return redirect("product:detail", productid)

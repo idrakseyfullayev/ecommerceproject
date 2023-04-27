@@ -15,8 +15,8 @@ class ProductModelCreateSerializer(serializers.ModelSerializer):
 
 
 class FavoriteModelListSerializer(serializers.ModelSerializer):
-    user = serializers.SlugRelatedField(queryset = Account.objects.all(), slug_field="username")
-    product = serializers.SlugRelatedField(queryset = ProductModel.objects.all(), slug_field = "name")
+    user = serializers.SlugField()   
+    product = serializers.SlugField()
     # user = AccountListSerializer()
     # product = ProductModelListSerializer()
     class Meta:

@@ -24,7 +24,7 @@ class IndexView(generic.View):
             if not FavoriteProductModel.objects.filter(user=request.user, product=product):
                 FavoriteProductModel.objects.create(user=request.user, product=product)
 
-        return redirect('product:index')
+        return redirect('index')
     
     
 

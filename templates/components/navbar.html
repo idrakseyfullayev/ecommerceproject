@@ -1,6 +1,6 @@
 <nav class="navbar navbar-expand-lg " style="background-color: #ff6cff; ">
   <div class="container-fluid">
-    <a class="navbar-brand"  href="{% url 'product:index' %}"><b>Home</b></a>
+    <a class="navbar-brand"  href="{% url 'index' %}"><b>Home</b></a>
           <div class="nav-item">{{request.user.username}}
           <a href="{% url 'product:basket' %}">
           <svg xmlns="http://www.w3.org/2000/svg" width="29" height="28" fill="currentColor" class="bi bi-cart4" viewBox="0 0 16 16">

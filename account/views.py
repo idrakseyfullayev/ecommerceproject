@@ -41,7 +41,7 @@ class RegisterView(generic.View):
                 messages.success(request, 'İstifadəçi yaradıldı')
                 user = authenticate(request, username=username, password=password)
                 login(request, user)
-                return redirect('product:index')
+                return redirect('index')
 
 
 
@@ -59,7 +59,7 @@ class LoginView(generic.View):
         user = authenticate(request, username=username, password=password)
         if user is not None:
             login(request, user)
-            return redirect("product:index")
+            return redirect("index")
         else:
             messages.info(request, "İstifadəçi tapılmadı")
             return redirect('account:login')    
@@ -68,6 +68,6 @@ class LoginView(generic.View):
 class LogoutView(generic.View):
     def get(self, request, *args, **kwargs):
         logout(request)
-        return redirect('product:index')
+        return redirect('index')
     
 

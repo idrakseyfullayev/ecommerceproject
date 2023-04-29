@@ -13,9 +13,14 @@
         {% if product.photo %}
         <a href="{% url 'product:detail' product.id %}"><img src="{{product.photo.url}}" class="card-img-top" alt="{{product.name}}"></a>
         {% endif %}
-        <div class="card-body"  style="background-color: #ff6cff;">
+        <div class="card-body"  style="background-color: #f0e9e3; ">
           <h5 class="card-title">{{product}}</h5>
           <h5 class="card-title">{{product.price}} azn</h5>
+          
+          
+          {% if product in user_favorites %}
+          <a class="btn btn-primary disabled">Səbətdə</a>
+          {% else %}
           <form method="POST">
             {% csrf_token %}
             <input type="hidden" name="productid" value="{{product.id}}">
@@ -26,6 +31,10 @@
           
           Səbətə at </button>
           </form>
+          {% endif %}
+          
+          
+          
         </div>
       </div>
       

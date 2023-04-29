@@ -6,13 +6,19 @@ from django.db.models import Q
 class IndexView(generic.View):
     def get(self, request, *args, **kwargs):
         products = ProductModel.objects.all()
+        user_favorites = []
+        if request.user.is_authenticated:
+            for i in request.user.user_favorites.all():
+                user_favorites.append(i.product)  
+
         query = request.GET.get("query")
 
         if query:
             products = ProductModel.objects.filter(Q(name__contains = query))
     
         context ={
-            'products': products
+            'products': products,
+            'user_favorites': user_favorites
         }
 
         return render(request, 'index.html', context)
@@ -31,6 +37,10 @@ class IndexView(generic.View):
 class DetailView(generic.View):
     def get(self, request, id, *args, **kwargs):
         product = get_object_or_404(ProductModel, id=id)
+        user_favorites = []
+        if request.user.is_authenticated:
+            for i in request.user.user_favorites.all():
+                user_favorites.append(i.product)
 
         if request.user.is_authenticated:
             if not ViewNumberModel.objects.filter(user=request.user, product=product):
@@ -43,7 +53,8 @@ class DetailView(generic.View):
 
 
         context = {
-            'product': product
+            'product': product,
+            'user_favorites': user_favorites
         }
 
         return render(request, 'detail.html', context)

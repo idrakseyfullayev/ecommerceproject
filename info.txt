@@ -22,7 +22,6 @@ python manage.py runserver - serveri aktivlesdirir
 
 
 git init - proyekt ucun bir defe yazilir
-git clone <url>- proyekt ucucn bir defe yazilir
 ------------------------------------------
 git status -  git-in veziyyetin yoxlayiriq
 git add . - deyisiklik olmus fayllari ad edir

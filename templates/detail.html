@@ -2,6 +2,8 @@
 
 {% block head %} <title>Details</title> {% endblock %}
 
+{% load datesince %}
+
 {% block content %}
 <div class="container mt-5">
   <div class="card mb-3" style="max-width: 100%;">
@@ -13,7 +15,7 @@
         <div class="card-body">
           <h5 class="card-title">{{product.name}}</h5>
           <h5 class="card-title">{{product.price}} azn</h5>
-          <p class="card-text">{{product.about}}</p>
+          <p class="card-text">{{product.about | design}}</p>
           <!-- <p class="card-text"><small class="text-body-secondary">Last updated 3 mins ago</small></p> -->
           <p>Baxış sayı: {{product.views_number}}</p>
 
@@ -30,7 +32,9 @@
 
             Bəyənmə: {{product.product_likes.all | length}}<br><br>
 
-
+          {% if product in user_favorites %}
+          <a class="btn btn-primary disabled">Səbətdə</a>
+          {% else %}
           <form method="POST">
         {% csrf_token %}
         <input type="hidden" name="choice" value="basket">
@@ -42,6 +46,7 @@
       
       Səbətə at </button>
       </form>
+      {% endif %}
 
         </div>
       </div>
@@ -75,7 +80,7 @@
     <div class="card-body">
       <blockquote class="blockquote mb-0">
         <p>{{product_comment.comment}}</p>
-        <footer class="blockquote-footer">{{ product_comment.pub_date | timesince }}</footer>
+        <footer class="blockquote-footer">{{ product_comment.pub_date | datesince }}</footer>
       </blockquote>
     </div>
   </div>
